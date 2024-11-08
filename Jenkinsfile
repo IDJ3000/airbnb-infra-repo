@@ -50,6 +50,11 @@ pipeline {
         sh """
         sudo yum update -y
         sudo yum install python3 -y
+        if ! command -v pip3 &> /dev/null
+        then
+            echo 'Installing pip3...'
+            sudo yum install python3-pip -y
+        fi
         sudo pip3 install checkov --no-deps
         checkov -d .
         """
