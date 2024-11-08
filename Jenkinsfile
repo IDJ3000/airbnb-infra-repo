@@ -45,6 +45,17 @@ pipeline {
             }
         }
         
+        stage('Checkov scan') {
+    steps {
+        sh """
+        sudo yum update -y
+        sudo yum install python3 -y
+        sudo pip3 install checkov --no-deps
+        checkov -d .
+        """
+    }
+}
+
         stage('Terraform Apply') {
             steps {
                 echo 'Running terraform apply'
