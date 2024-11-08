@@ -55,7 +55,7 @@ pipeline {
             echo 'Installing pip3...'
             sudo yum install python3-pip -y
         fi
-        sudo pip3 install checkov --no-deps
+        sudo pip3 install checkov
         checkov -d .
         """
     }
